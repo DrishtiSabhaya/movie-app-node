@@ -8,13 +8,11 @@ const AuthenticationController = (app) => {
         const user = req.body;
         const username = user.username;
         const password = user.password;
-        console.log(user);
         const existingUser = await userDao.findUserByCredentials(username, password);
-        console.log(existingUser);
         // const match = await bcrypt.compare(password, existingUser.password);
 
         if (existingUser) {
-            existingUser.password = '*****';
+            // existingUser.password = '*****';
             // @ts-ignore
             req.session['currentUser'] = existingUser;
             res.json(existingUser);
@@ -36,7 +34,7 @@ const AuthenticationController = (app) => {
             return;
         } else {
             const insertedUser = await userDao.createUser(newUser);
-            insertedUser.password = '';
+            // insertedUser.password = '';
             // @ts-ignore
             req.session['currentUser'] = insertedUser;
             res.json(insertedUser);
@@ -59,8 +57,18 @@ const AuthenticationController = (app) => {
         res.sendStatus(200);
     }
 
-    const update = (req, res) => {
-
+    const update = async (req, res) => {
+        const newUser = req.body;
+        const newId = await userDao.findUserById(newUser._id);
+        if(newId !== null) {
+            const user = await userDao.updateUser(newUser._id, newUser);
+            const newuser = await userDao.findUserById(newUser._id);
+            req.session['currentUser'] = newuser;
+            res.json(user);
+        } else {
+            res.sendStatus(409);
+            return;
+        }
     }
 
     app.post("/api/users/register", register);
