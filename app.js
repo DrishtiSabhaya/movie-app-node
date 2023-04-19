@@ -3,6 +3,7 @@ import HelloController from "./controllers/hello-controller.js";
 import AuthenticationController from "./controllers/authentication-controller.js";
 import SessionController from "./controllers/session-controller.js";
 import UserController from "./controllers/users/user-controller.js";
+import FavouriteController from "./controllers/favourites/favourite-controller.js";
 import cors from 'cors';
 import dotenv from "dotenv";
 import mongoose from "mongoose";
@@ -35,5 +36,6 @@ HelloController(app);
 SessionController(app);
 AuthenticationController(app);
 UserController(app);
+FavouriteController(app);
 
 app.listen(process.env.PORT || 4000);

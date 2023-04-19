@@ -8,6 +8,7 @@ const FavouriteController = (app) => {
 
 const createFavourite = async (req, res) => {
     const newFavourite = req.body;
+    console.log(newFavourite);
     const insertedFavourite = await favouriteDao.createFavourite(newFavourite);
     res.json(insertedFavourite);
 }
