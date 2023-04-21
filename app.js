@@ -9,6 +9,7 @@ import cors from 'cors';
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import session from "express-session";
+import SearchController from './controllers/search-controller.js';
 
 dotenv.config();
 
@@ -39,5 +40,6 @@ AuthenticationController(app);
 UserController(app);
 FavouriteController(app);
 ReviewController(app);
+SearchController(app);
 
 app.listen(process.env.PORT || 4000);
