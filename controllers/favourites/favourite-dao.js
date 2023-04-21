@@ -8,3 +8,4 @@ export const deleteFavouriteByUser = async (uid, mid) => FavouriteModel.deleteOn
 
 export const findFavouriteByUser = async(uid) => FavouriteModel.find({ userID: uid });
 
+export const findFavouriteByUserandMovie = async(uid, mid) => FavouriteModel.find({ userID: uid, movieID: mid });
