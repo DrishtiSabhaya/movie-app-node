@@ -3,6 +3,7 @@ import * as favouriteDao from './favourite-dao.js'
 const FavouriteController = (app) => {
     app.post('/api/favourite', createFavourite);
     app.get('/api/favourite/:uid', findFavouriteByUser);
+    app.get('/api/favourite/:uid/:mid', findFavouriteByUserandMovie);
     app.delete('/api/favourite/:uid/:mid', deleteFavouriteByUser);
 }
 
@@ -20,6 +21,11 @@ const findUsers  = async (req, res) => {
 
 const findFavouriteByUser  = async (req, res) => {
     const favourites = await favouriteDao.findFavouriteByUser(req.params.uid);
+    res.json(favourites);
+}
+
+const findFavouriteByUserandMovie  = async (req, res) => {
+    const favourites = await favouriteDao.findFavouriteByUserandMovie(req.params.uid, req.params.mid);
     res.json(favourites);
 }
 
