@@ -7,10 +7,11 @@ const schema = mongoose.Schema({
     genre: String,
     createdAt: { type: Date, default: Date.now },
     isAdmin: { type: Boolean, default: false },
+    isCritic: {type: Boolean, default: false},
     role: {
         type: String,
         default: "user",
-        enum: ["admin", "user", "guest", "reviewer"],
+        enum: ["admin", "user", "guest", "critic"],
     },
 }, {collection: 'users'});
 export default schema;

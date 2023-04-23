@@ -5,6 +5,7 @@ import SessionController from "./controllers/session-controller.js";
 import UserController from "./controllers/users/user-controller.js";
 import FavouriteController from "./controllers/favourites/favourite-controller.js";
 import ReviewController from "./controllers/reviews/review-controller.js";
+import RatingController from "./controllers/ratings/rating-controller.js";
 import cors from 'cors';
 import dotenv from "dotenv";
 import mongoose from "mongoose";
@@ -41,5 +42,6 @@ UserController(app);
 FavouriteController(app);
 ReviewController(app);
 SearchController(app);
+RatingController(app);
 
 app.listen(process.env.PORT || 4000);
